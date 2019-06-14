@@ -1,13 +1,13 @@
 
---Bookstore retail management system ÊéµêÁãÊÛ¹ÜÀíÏµÍ³
-create database BRMSDB  --½¨Á¢Êı¾İ¿â
+--Bookstore retail management system ä¹¦åº—é›¶å”®ç®¡ç†ç³»ç»Ÿ
+create database BRMSDB  --å»ºç«‹æ•°æ®åº“
 on
 (
-name='BRMSDB',--´´½¨Êı¾İÎÄ¼şÃû
-filename='d:\db\BRMSDB.mdf',--ÎÄ¼şÃûµØÖ·
-size=3mb,--ÎÄ¼şÆğÊ¼´óĞ¡
-maxsize=100mb,--ÎÄ¼ş×î´ó´óĞ¡
-filegrowth=2mb--ÎÄ¼şÔö³¤ËÙ¶È
+name='BRMSDB',--åˆ›å»ºæ•°æ®æ–‡ä»¶å
+filename='d:\db\BRMSDB.mdf',--æ–‡ä»¶ååœ°å€
+size=3mb,--æ–‡ä»¶èµ·å§‹å¤§å°
+maxsize=100mb,--æ–‡ä»¶æœ€å¤§å¤§å°
+filegrowth=2mb--æ–‡ä»¶å¢é•¿é€Ÿåº¦
 )
 log on
 (
@@ -21,62 +21,62 @@ filegrowth=10%
 
 use BRMSDB
 go
-drop table supplier
+--drop table supplier
 go
-create table Supplier--¹©Ó¦ÉÌ±í
+create table Supplier--ä¾›åº”å•†è¡¨
 (
-	Supplier_id varchar(20) primary key,--¹©Ó¦ÉÌºÅ
-	Supplier_name varchar(20),--¹©Ó¦ÉÌÃû×Ö
-	Supplier_city varchar(20),--¹©Ó¦ÉÌ³ÇÊĞ
-	Supplier_tel varchar(20),--¹©Ó¦ÉÌµç»°
+	Supplier_id varchar(20) primary key,--ä¾›åº”å•†å·
+	Supplier_name varchar(20),--ä¾›åº”å•†åå­—
+	Supplier_city varchar(20),--ä¾›åº”å•†åŸå¸‚
+	Supplier_tel varchar(20),--ä¾›åº”å•†ç”µè¯
 	
 )
 
-create table Orderform--¶©µ¥±í
+create table Orderform--è®¢å•è¡¨
 (
-	Orderform_id varchar(20) primary key,--¶©µ¥±àºÅ
-	Orderform_time datetime,--¶©µ¥Ê±¼ä
-	Customer_id varchar(20),--¹Ë¿Í±àºÅ
-	Supplier_id varchar(20),--¹©Ó¦ÉÌ±àºÅ
-	Supplier_total int--¹©Ó¦Á¿
+	Orderform_id varchar(20) primary key,--è®¢å•ç¼–å·
+	Orderform_time datetime,--è®¢å•æ—¶é—´
+	Customer_id varchar(20),--é¡¾å®¢ç¼–å·
+	Supplier_id varchar(20),--ä¾›åº”å•†ç¼–å·
+	Supplier_total int--ä¾›åº”é‡
 )
 
-create table Order_detail--¶©µ¥Ã÷Ï¸±í
+create table Order_detail--è®¢å•æ˜ç»†è¡¨
 (
-	Orderform_id varchar(20) primary key,--¶©µ¥±àºÅ
-	Book_num int ,--Í¼ÊéÊıÁ¿
-	Book_id varchar(20),--Í¼ÊéºÅ
-	Pay_total float--Ğ¡¼Æ
+	Orderform_id varchar(20) primary key,--è®¢å•ç¼–å·
+	Book_num int ,--å›¾ä¹¦æ•°é‡
+	Book_id varchar(20),--å›¾ä¹¦å·
+	Pay_total float--å°è®¡
 )
 --drop table Book
 
-create table Book--Í¼Êé±í
+create table Book--å›¾ä¹¦è¡¨
 (
-	Book_id varchar(20) primary key,--Í¼ÊéºÅ
-	Book_in_price float,--½ø¼Û
-	Book_out_price float,--Í¼ÊéÊÛ¼Û
-	Book_name varchar(20),--ÊéÃû
-	Supplier_name varchar(20),--¹©Ó¦ÉÌÃû×Ö
-	Book_stock int--¿â´æ
+	Book_id varchar(20) primary key,--å›¾ä¹¦å·
+	Book_in_price float,--è¿›ä»·
+	Book_out_price float,--å›¾ä¹¦å”®ä»·
+	Book_name varchar(20),--ä¹¦å
+	Supplier_name varchar(20),--ä¾›åº”å•†åå­—
+	Book_stock int--åº“å­˜
 )
-create table Pay_message--Ö§¸¶ĞÅÏ¢±í
+create table Pay_message--æ”¯ä»˜ä¿¡æ¯è¡¨
 (
-	Orderform_id varchar(20) primary key,--¶©µ¥ºÅ
-	Pay_money float,--Ö§¸¶×Ü¶î
-	Pay_mode varchar(20)--Ö§¸¶·½Ê½
+	Orderform_id varchar(20) primary key,--è®¢å•å·
+	Pay_money float,--æ”¯ä»˜æ€»é¢
+	Pay_mode varchar(20)--æ”¯ä»˜æ–¹å¼
 )
-create table Customer--¹Ë¿Í±í
+create table Customer--é¡¾å®¢è¡¨
 (
-	Customer_id varchar(20) primary key,--¹Ë¿ÍºÅ
-	Customer_vip bit,--ÊÇ·ñ»áÔ±
-	Customer_vip_money float,--»áÔ±¿¨½ğ¶î
-	Customer_tel varchar(20) --¹Ë¿ÍÁªÏµµç»°
+	Customer_id varchar(20) primary key,--é¡¾å®¢å·
+	Customer_vip bit,--æ˜¯å¦ä¼šå‘˜
+	Customer_vip_money float,--ä¼šå‘˜å¡é‡‘é¢
+	Customer_tel varchar(20) --é¡¾å®¢è”ç³»ç”µè¯
 ) 
 --drop table Sell_record
-create table Sell_record--ÏúÊÛ±í
+create table Sell_record--é”€å”®è¡¨
 (
-	Orderform_id varchar(20),--¶©µ¥ºÅ
-	Book_id varchar(20),--Í¼ÊéºÅ
+	Orderform_id varchar(20),--è®¢å•å·
+	Book_id varchar(20),--å›¾ä¹¦å·
 	PRIMARY KEY(Orderform_id,Book_id)
 )
 ------------------------------------------------------------------------------------------------
